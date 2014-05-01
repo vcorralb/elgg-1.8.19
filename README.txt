@@ -1,4 +1,3 @@
-
 Elgg
 Copyright (c) 2008-2013 See COPYRIGHT.txt
 
