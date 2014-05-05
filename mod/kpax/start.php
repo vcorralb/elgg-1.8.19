@@ -38,9 +38,9 @@ function kpax_init() {
     // menus
 
     elgg_register_menu_item('site', array(
-        'name' => 'play',
-        'text' => elgg_echo('kPAX:play'),
-        'href' => 'kpax/play'
+        'name' => 'all',
+        'text' => elgg_echo('kPAX:all'),
+        'href' => 'kpax/all'
     ));
 
     elgg_register_menu_item('site', array(
@@ -93,7 +93,7 @@ function kpax_page_handler($page) {
 
     elgg_push_breadcrumb(elgg_echo('kPAX:play'), 'kpax/play');
     elgg_push_breadcrumb(elgg_echo('kPAX:devs'), 'kpax/devs');
-    elgg_push_breadcrumb(elgg_echo('Games'), 'kpax/all');   //NOU  ???
+    elgg_push_breadcrumb(elgg_echo('Games'), 'kpax/all');
 
 
     // old group usernames
@@ -223,7 +223,7 @@ function kpax_url($entity) {
 
     $title = $entity->title;
     $title = elgg_get_friendly_title($title);
-    return $CONFIG->url . "kpax/views/" . $entity->getGUID() . "/" . $title; //He canviat kpax/view per kpax/views
+    return $CONFIG->url . "kpax/view/" . $entity->getGUID() . "/" . $title;
 }
 
 ?> 

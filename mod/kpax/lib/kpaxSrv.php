@@ -43,11 +43,11 @@ class kpaxSrv {
         return json_decode($this->service("game/" . $campusSession . "/get/" . $gameId));
     }
 
-//NOU - El·liminat
-//    public function getListGames($campusSession) {
-//        //var_dump($this->service("game/" . $campusSession . "/list")); //Volem que torni l'objecte
-//        json_decode($this->service("game/" . $campusSession . "/list"));
-//    }
+
+    public function getListGames($campusSession) {
+        //var_dump($this->service("game/" . $campusSession . "/list")); //Volem que torni l'objecte
+        return json_decode($this->service("game/" . $campusSession . "/list"));
+    }
 
     public function addLikeGame($campusSession, $containerId, $productId) {
         $body = 'secretSession=' . $campusSession . '&containerId=' . $containerId;
@@ -86,14 +86,14 @@ class kpaxSrv {
 
 //NOU
 // Begin Author: rviguera
-    public function getListGames($campusSession, $idOrderer, $idFilterer, $fields, $values) {
+    /*public function getListGames($campusSession, $idOrderer, $idFilterer, $fields, $values) {
         $body = 'secretSession=' . $campusSession;
     $count = count($fields);
     for ($i = 0; $i < $count; $i++) {
         $body = $body . "&fields=" . $fields[$i] . "&values=" . $values[$i];
     }
         return json_decode($this->service("game/" . $campusSession . "/list/" . $idOrderer . "/" . $idFilterer, "POST", $body));
-    }
+    }*/
 
     public function getUserListGames($username, $campusSession) {
         //$body = 'secretSession=' . $campusSession . "&username=" . $username;
@@ -141,6 +141,34 @@ class kpaxSrv {
         return $this->service("game/tag/" . $idGame . "/addDel", "POST", $body);
     }
 // Fi NOU
+
+/*AGIRO*/
+	public function getListGamesSearch($name, $category, $platform, $skill, $minimumAge, $sort, $campusSession) {
+		$text = urlencode($name . "#_#" . $category . "#_#" . $platform . "#_#" . $skill . "#_#" . $minimumAge . "#_#" .  $sort);
+		return json_decode($this->service("game/" . $campusSession . "/list/" . $text));
+    }
+	
+	/*Platforms*/
+	public function getPlatforms($campusSession) {
+		$listPlatforms = json_decode($this->service("game/platform/" . $campusSession . "/list/"));
+        return $listPlatforms;
+    }
+
+    public function getPlatform($campusSession, $idPlatform) {
+        $objPlatform = json_decode($this->service("game/platform/" . $campusSession . "/get/" . $idPlatform));
+        return $objPlatform;
+    }
+	
+	/*Skills*/
+	public function getSkills($campusSession) {
+		$listSkills = json_decode($this->service("game/skill/" . $campusSession . "/list/"));
+        return $listSkills;
+    }
+
+    public function getSkill($campusSession, $idSkill) {
+        $objSkill = json_decode($this->service("game/skill/" . $campusSession . "/get/" . $idSkill));
+        return $objSkill;
+    }
 }
 
 ?>
