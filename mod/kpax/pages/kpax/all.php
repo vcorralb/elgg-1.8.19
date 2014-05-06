@@ -108,6 +108,13 @@ if(strlen($name) != 0 || strlen($category) != 0 || strlen($platform) != 0 || str
 }
 else $gameList = $objKpax->getListGames($_SESSION["campusSession"]);
 
+//Obtain tags for each game
+for ($i = 0, $sizeGameList = count($gameList); $i < $sizeGameList; $i++){
+	$idGame = $gameList[$i]->idGame;
+	$tags[$i] = $objKpax->getTagsGame($_SESSION["campusSession"],$idGame);
+}
+
+
 //DEFAULT OPTIONS FOR ELGG LISTING. All games.
 $options = array(
 	'type' => 'object',
@@ -147,7 +154,7 @@ else
 
 //ho fem nom�s si torna algun resultat sino no en posem cap
 if(isset($gameList) && sizeof($gameList) > 0) { 	
-	$content .= elgg_view('kpax/games_list', array('objGameList' => $gameList, 'categories' => $categories, 'platforms' => $platforms, 'skills' => $skills));
+	$content .= elgg_view('kpax/games_list', array('objGameList' => $gameList, 'categories' => $categories, 'platforms' => $platforms, 'skills' => $skills, 'tags' => $tags));
 }
 if (!$content) {
     $content = '<p>' . elgg_echo('kpax:none') . '</p>';
