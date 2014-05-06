@@ -74,7 +74,7 @@ if ($full) {
 
     $body = elgg_view('output/longtext', array(
 //NOU - Línia modificada        
-        'value' => $kpax->description . '<br>' . "Category: " . $objCategory->name . '<br>' . "Date of creation: " . $kpax->creationDate . '<br>' . $contentFooter,
+        'value' => $kpax->description . '<br>' . "Category: " . $objCategory->name . '<br>' . "Date of creation: " . $kpax->dateCreation . '<br>' . $contentFooter,
         'class' => 'kpax-post',
             ));
 

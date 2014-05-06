@@ -28,21 +28,19 @@ if($vars['categories'] && $vars['platforms'] && $vars['skills'])
 			<?php
 			echo "<tr height=\"40px\"><td width=\"300px\"><b>". elgg_echo('kpax:name') ."</b></td><td width=\"160px\"><b>". 
 					elgg_echo('kpax:category')."</b></td><td width=\"160px\"><b>". elgg_echo('kpax:platform')."</b></td><td width=\"160px\"><b>". 
-					elgg_echo('kpax:skill')."</b></td><td width=\"160px\"><b>". elgg_echo('kpax:minimumage')."</b></td></tr>";
+					elgg_echo('kpax:skill')."</b></td></tr>";
 			foreach ($vars['objGameList'] as $game) {
 				$catview = "";
 				$platview = "";
 				$skillview = "";
-				$ageview = "";
 				if($game->idCategory != 0)
 					$catview = $cats[$game->idCategory];
 				if($game->idPlatform != 0)
 					$platview = $plats[$game->idPlatform];
 				if($game->idSkill != 0)
 					$skillview = $skillss[$game->idSkill];
-				$ageview = $game->minimumAge;
 				echo "<tr><td width=\"300px\"><a href=view/" . $game->idGame . ">". $game->name ."</a></td><td width=\"160px\">". 
-					$catview."</td><td width=\"160px\">". $platview."</td><td width=\"160px\">". $skillview."</td><td width=\"160px\">". $ageview." ".elgg_echo('kpax:age')."</td></tr>";
+					$catview."</td><td width=\"160px\">". $platview."</td><td width=\"160px\">". $skillview."</td></tr>";
 			}
 			?>
 			</table>

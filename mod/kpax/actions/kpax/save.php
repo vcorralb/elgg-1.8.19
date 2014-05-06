@@ -8,7 +8,7 @@ $title = get_input('title');
 $description = get_input('description');
 $tags = string_to_tag_array(get_input('tags'));
 $category = get_input('category'); //NOU
-$creationDate = get_input('creationDate'); //NOU
+$dateCreation = get_input('dateCreation'); //NOU
 
 $guid = get_input('guid');
 $container_guid = get_input('container_guid', elgg_get_logged_in_user_guid());
@@ -32,7 +32,7 @@ if ($guid == 0) { // New game
 $kPAXgame->title = $title;
 $kPAXgame->description = $description;
 $kPAXgame->idCategory = $category; //NOU
-$kPAXgame->creationDate = $creationDate; //NOU
+$kPAXgame->dateCreation = $dateCreation; //NOU
 
 // by default, the game is public
 $kPAXgame->access_id = ACCESS_LOGGED_IN;
@@ -56,7 +56,7 @@ if ($kPAXgame->save()) {
 // register_error(elgg_echo('kpax:save:failed:service'));
 //}
 //NOU
-if($objKpax->addGame($_SESSION["campusSession"],$title, $kPAXgame->getGUID(), $category, $creationDate)!="OK"){
+if($objKpax->addGame($_SESSION["campusSession"],$title, $kPAXgame->getGUID(), $category, $dateCreation)!="OK"){
     register_error(elgg_echo('kpax:save:failed:service'));
 }
 else

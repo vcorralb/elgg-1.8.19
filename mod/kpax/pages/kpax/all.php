@@ -30,13 +30,11 @@ $name = "";
 $category = "";
 $platform = "";
 $ski = "";
-$minimumAge = "";
 $sort = "";
 if(isset($_POST['name'])) $name = $_POST['name'];
 if(isset($_POST['category'])) $category = $_POST['category'];
 if(isset($_POST['platform'])) $platform = $_POST['platform'];
 if(isset($_POST['skill'])) $ski = $_POST['skill'];
-if(isset($_POST['age'])) $minimumAge = $_POST['age'];
 if(isset($_POST['sort'])) $sort = $_POST['sort'];
 
 // FORMULARI CERCA
@@ -77,7 +75,6 @@ $content .= "<select name=\"skill\" id=\"skill\" size=1>";
 		$content .= "<option value=\"".$skill->idSkill."\" ".$selectedseleccio1.">".$skill->name."</option>";
 	}
 $content .= "</select></td></tr>";
-$content .= "<tr height=\"45px\"><td>".elgg_echo('kpax:minimumage')."</td><td><input type=\"age\" name=\"age\" size =\"50\" value=\"".$minimumAge."\"/></td></tr>";
 $content .= "<tr height=\"45px\"><td>".elgg_echo('kpax:sort')."</td><td>";
 
 $selectedordenacio1 = "";
@@ -101,14 +98,13 @@ $content .= "<select name=\"sort\" id=\"sort\" size=1>
 					<option value=\"2\" ".$selectedordenacio2.">".elgg_echo('kpax:category')."</option>
 					<option value=\"3\" ".$selectedordenacio3.">".elgg_echo('kpax:platform')."</option>
 					<option value=\"4\" ".$selectedordenacio4.">".elgg_echo('kpax:skill')."</option>
-					<option value=\"5\" ".$selectedordenacio5.">".elgg_echo('kpax:minimumage')."</option>
 			</select></td></tr>";
 $content .= "<tr height=\"45px\"><td></td><td><input type=\"submit\" value=\"".elgg_echo('kpax:search')."\" /></td></tr>";
 $content .= "</table></form><hr/><br/>";
 
-if(strlen($name) != 0 || strlen($category) != 0 || strlen($platform) != 0 || strlen($ski) != 0 || strlen($minimumAge) != 0) 
+if(strlen($name) != 0 || strlen($category) != 0 || strlen($platform) != 0 || strlen($ski) != 0) 
 {
-	$gameList = $objKpax->getListGamesSearch($name, $category, $platform, $ski, $minimumAge, $sort, $_SESSION["campusSession"]);
+	$gameList = $objKpax->getListGamesSearch($name, $category, $platform, $ski, $sort, $_SESSION["campusSession"]);
 }
 else $gameList = $objKpax->getListGames($_SESSION["campusSession"]);
 
@@ -149,7 +145,7 @@ if(isset($gameList))
 else
 	register_error(elgg_echo('kpax:list:failed'));
 
-//ho fem només si torna algun resultat sino no en posem cap
+//ho fem nomï¿½s si torna algun resultat sino no en posem cap
 if(isset($gameList) && sizeof($gameList) > 0) { 	
 	$content .= elgg_view('kpax/games_list', array('objGameList' => $gameList, 'categories' => $categories, 'platforms' => $platforms, 'skills' => $skills));
 }

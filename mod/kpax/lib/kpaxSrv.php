@@ -101,8 +101,8 @@ class kpaxSrv {
         //var_dump($this->service("game/" . $campusSession . "/list/" . $username));
     }
 
-    public function addGame($campusSession, $name, $idGame, $idCategory, $creationDate) {
-        $body = 'secretSession=' . $campusSession . '&name=' . $name . '&idGame=' . $idGame . "&idCategory=" . $idCategory . "&creationDate=" . $creationDate;
+    public function addGame($campusSession, $name, $idGame, $idCategory, $dateCreation) {
+        $body = 'secretSession=' . $campusSession . '&name=' . $name . '&idGame=' . $idGame . "&idCategory=" . $idCategory . "&dateCreation=" . $dateCreation;
         return $this->service("game/add", "POST", $body);
     }
 
@@ -143,8 +143,8 @@ class kpaxSrv {
 // Fi NOU
 
 /*AGIRO*/
-	public function getListGamesSearch($name, $category, $platform, $skill, $minimumAge, $sort, $campusSession) {
-		$text = urlencode($name . "#_#" . $category . "#_#" . $platform . "#_#" . $skill . "#_#" . $minimumAge . "#_#" .  $sort);
+	public function getListGamesSearch($name, $category, $platform, $skill, $sort, $campusSession) {
+		$text = urlencode($name . "#_#" . $category . "#_#" . $platform . "#_#" . $skill . "#_#" .  $sort);
 		return json_decode($this->service("game/" . $campusSession . "/list/" . $text));
     }
 	

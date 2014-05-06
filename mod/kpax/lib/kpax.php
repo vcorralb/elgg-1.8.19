@@ -23,7 +23,7 @@ function kpax_prepare_form_vars($kpax = null) {
 		'guid' => null,
 		'entity' => $kpax,
 		'category' => get_input('category', '1'), //NOU
-		'creationDate' => get_input('category', date("d-m-Y H:i:s")) //NOU
+		'dateCreation' => get_input('category', date("d-m-Y H:i:s")) //NOU
 	);
 
 	if ($kpax) {

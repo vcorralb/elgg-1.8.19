@@ -7,7 +7,7 @@
 $title = elgg_extract('title', $vars, '');
 $desc = elgg_extract('description', $vars, '');
 $category = elgg_extract('category', $vars, ''); //NOU
-$creationDate = elgg_extract('creationDate', $vars, ''); //NOU
+$dateCreation = elgg_extract('dateCreation', $vars, ''); //NOU
 $skills = elgg_extract('skills', $vars, '');
 $tags = elgg_extract('tags', $vars, '');
 $csr_file = elgg_extract('csr_file', $vars, '');
@@ -33,8 +33,8 @@ $guid = elgg_extract('guid', $vars, null);
 </div>
 
 <div>
-    <label><?php echo elgg_echo('kPAX:game:creationDate'); ?></label><br />
-    <?php echo elgg_view('input/text', array('name' => 'creationDate', 'value' => $creationDate)); ?>
+    <label><?php echo elgg_echo('kPAX:game:dateCreation'); ?></label><br />
+    <?php echo elgg_view('input/text', array('name' => 'dateCreation', 'value' => $dateCreation)); ?>
 </div>
 //FI NOU
 

@@ -14,7 +14,7 @@ $catalan = array(
 	'loginerror' => "No hem pogut validar-te. Prova de nou",
 	'login:empty' => "Requereix nom d'usuari/correu electr&ograve;nic i paraula de pas",
 	'login:baduser' => "No es pot carregar el teu compte d'usuari",
-	'auth:nopams' => "Error intern. No hi ha m&egrave;tode de validaci&oacute; instal·lat",
+	'auth:nopams' => "Error intern. No hi ha m&egrave;tode de validaci&oacute; instalï¿½lat",
 
 	'logout' => "Surt",
 	'logoutok' => "Has sortit de kPAX",
@@ -104,7 +104,7 @@ $catalan = array(
     'kPAX:game:skills' => "Compet&egrave;ncies (*)",
     'kPAX:game:category' => "Categoria/es del joc",
     'kPAX:game:platforms' => "Plataformes disponibles",
-    'kPAX:game:creationDate' => "Data de creaci&oacute;",
+    'kPAX:game:dateCreation' => "Data de creaci&oacute;",
     'kPAX:game:tags' => "Etiquetes (tags) associades",
     'kPAX:game:csr_file' => "Fitxer de petici&oacute; de certificat [.csr] (*)",
     'kPAX:game:send' => "Envia el meu joc!",
@@ -112,7 +112,7 @@ $catalan = array(
     'kPAX:noGames' => "Encara no tens jocs a kPAX",
     'kPAX:my_dev_games' => "Els meus jocs (desenvolupats)",
     'kpax:tagline' => 'Juguem seriosament!',
-	'kpax:dragdrop' => 'També pots arrossegar una imatge desde l\'escriptori'
+	'kpax:dragdrop' => 'Tambï¿½ pots arrossegar una imatge desde l\'escriptori'
 );
 
 add_translation('ca', $catalan);
