@@ -169,6 +169,17 @@ class kpaxSrv {
         $objSkill = json_decode($this->service("game/skill/" . $campusSession . "/get/" . $idSkill));
         return $objSkill;
     }
+	
+	/* metadata */
+	public function getMetaDatasGame($campusSession, $idGame) {
+        $listMetaDatas = json_decode($this->service("game/metadata/" . $campusSession . "/list/" . $idGame));
+        return $listMetaDatas;
+    }
+
+    public function addDelMetaDatasGame($campusSession, $idGame, $keysCommaSeparated, $valuesCommaSeparated) {
+        $body = 'secretSession=' . $campusSession . '&keys=' . $keysCommaSeparated . '&values=' . $valuesCommaSeparated;;
+        return $this->service("game/metadata/" . $idGame . "/addDel", "POST", $body);
+    }
 }
 
 ?>
