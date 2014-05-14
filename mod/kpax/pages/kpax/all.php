@@ -8,10 +8,13 @@ $objKpax = new kpaxSrv(elgg_get_logged_in_user_entity()->username);
 $categories = $objKpax->getCategories($_SESSION["campusSession"]);
 $platforms = $objKpax->getPlatforms($_SESSION["campusSession"]);
 $skills = $objKpax->getSkills($_SESSION["campusSession"]);
+$metadatas = $objKpax->getMetaDatas($_SESSION["campusSession"]);
 
+/* Obtain category name, platform name and skill name for each id */
 $cats = array();
 $plats = array();
 $skillss = array();
+$metadatass = array();
 
 foreach($categories as $cat)
 {
@@ -25,19 +28,30 @@ foreach($skills as $skill)
 {
 	$skillss[$skill->idSkill] = $skill->name;
 }
+/*foreach($metadatas as $metadata)
+{
+	$metadatass[$metadata->idMetadata] = $metadata->keyMeta;
+}*/
 
+/* Save last form value */
 $name = "";
 $category = "";
 $platform = "";
 $ski = "";
+$tag = "";
+$keyMeta = "";
+$valueMeta = "";
 $sort = "";
 if(isset($_POST['name'])) $name = $_POST['name'];
 if(isset($_POST['category'])) $category = $_POST['category'];
 if(isset($_POST['platform'])) $platform = $_POST['platform'];
 if(isset($_POST['skill'])) $ski = $_POST['skill'];
+if(isset($_POST['tag'])) $tag = $_POST['tag'];
+if(isset($_POST['keymeta'])) $keyMeta = $_POST['keymeta'];
+if(isset($_POST['valuemeta'])) $valueMeta = $_POST['valuemeta'];
 if(isset($_POST['sort'])) $sort = $_POST['sort'];
 
-// FORMULARI CERCA
+/* Search form*/
 $content .= "<br/><br/><form method=\"post\" action=\"all\">";
 $content .= elgg_echo('kpax:search')."<hr/>";
 $content .= "<table>";
@@ -72,11 +86,25 @@ $content .= "<select name=\"skill\" id=\"skill\" size=1>";
 		$selected = "";
 		if($skill->idSkill == $ski)
 			$selected = "selected";
-		$content .= "<option value=\"".$skill->idSkill."\" ".$selectedseleccio1.">".$skill->name."</option>";
+		$content .= "<option value=\"".$skill->idSkill."\" ".$selected.">".$skill->name."</option>";
 	}
 $content .= "</select></td></tr>";
+$content .= "<tr height=\"45px\"><td width=\"200px\">".elgg_echo('kpax:tag')."</td><td><input type=\"text\" name=\"tag\" size =\"50\" value=\"".$tag."\"/></td></tr>";
+$content .= "<tr height=\"45px\"><td>".elgg_echo('kpax:metadata')."</td><td>";
+$content .= "<select name=\"keymeta\" id=\"keymeta\" size=1>";
+	$content .= "<option value=\"0\">".elgg_echo('kpax:allmetadata')."</option>";
+	foreach($metadatas as $metadata)
+	{
+		$selected = "";
+		if($metadata == $keyMeta)
+			$selected = "selected";
+		$content .= "<option value=\"".$metadata."\" ".$selected.">".$metadata."</option>";
+	}
+$content .= "</select></td>";
+$content .= "<td><input type=\"text\" name=\"valuemeta\" size =\"50\" value=\"".$valueMeta."\"/></td></tr>";
 $content .= "<tr height=\"45px\"><td>".elgg_echo('kpax:sort')."</td><td>";
 
+/* Order form */
 $selectedordenacio1 = "";
 $selectedordenacio2 = "";
 $selectedordenacio3 = "";
@@ -102,21 +130,22 @@ $content .= "<select name=\"sort\" id=\"sort\" size=1>
 $content .= "<tr height=\"45px\"><td></td><td><input type=\"submit\" value=\"".elgg_echo('kpax:search')."\" /></td></tr>";
 $content .= "</table></form><hr/><br/>";
 
-if(strlen($name) != 0 || strlen($category) != 0 || strlen($platform) != 0 || strlen($ski) != 0) 
-{
-	$gameList = $objKpax->getListGamesSearch($name, $category, $platform, $ski, $sort, $_SESSION["campusSession"]);
-}
-else $gameList = $objKpax->getListGames($_SESSION["campusSession"]);
+/* Call kPAX */
+//if(strlen($name) != 0 || strlen($category) != 0 || strlen($platform) != 0 || strlen($ski) != 0 || strlen($tag) != 0 || strlen($keyMeta) != 0 || strlen($valueMeta) != 0) 
+//{
+	$gameList = $objKpax->getListGamesSearch($name, $category, $platform, $ski, $tag, $keyMeta, $valueMeta, $sort, $_SESSION["campusSession"]);
+//}
+//else $gameList = $objKpax->getListGames($_SESSION["campusSession"]);
 
 //Obtain tags for each game
-for ($i = 0, $sizeGameList = count($gameList); $i < $sizeGameList; $i++){
+//Not necessary because this information is in $gameList
+/*for ($i = 0, $sizeGameList = count($gameList); $i < $sizeGameList; $i++){
 	$idGame = $gameList[$i]->idGame;
 	$tags[$i] = $objKpax->getTagsGame($_SESSION["campusSession"],$idGame);
-}
-
+}*/
 
 //DEFAULT OPTIONS FOR ELGG LISTING. All games.
-$options = array(
+/*$options = array(
 	'type' => 'object',
 	'subtype' => 'kpax',
 	'container_guid' => $page_owner->guid,
@@ -124,7 +153,7 @@ $options = array(
 	'offset' => $offset,
 	'full_view' => false,
 	'view_toggle_type' => false
-);
+);*/
 
 if(isset($gameList))
 {
@@ -136,7 +165,7 @@ if(isset($gameList))
 	 * order as gotten from srvKpax. Not by default
 	 * elgg order (time_created desc).
 	 */
-	$where = array();
+	/*$where = array();
 	$orderBy = ' CASE ';
 	for($i = 0, $size = sizeof($gameList); $i < $size; ++$i)
 	{
@@ -147,17 +176,17 @@ if(isset($gameList))
 	}
 	$options = array_merge($options, array('guids' => $where));
 	$orderBy = $orderBy . " END ";
-	$options = array_merge($options, array('order_by' => $orderBy));
+	$options = array_merge($options, array('order_by' => $orderBy));*/
 }
 else
 	register_error(elgg_echo('kpax:list:failed'));
 
-//ho fem nom�s si torna algun resultat sino no en posem cap
+/* Show results */
 if(isset($gameList) && sizeof($gameList) > 0) { 	
-	$content .= elgg_view('kpax/games_list', array('objGameList' => $gameList, 'categories' => $categories, 'platforms' => $platforms, 'skills' => $skills, 'tags' => $tags));
+	$content .= elgg_view('kpax/games_list', array('objGameList' => $gameList, 'categories' => $categories, 'platforms' => $platforms, 'skills' => $skills));
 }
-if (!$content) {
-    $content = '<p>' . elgg_echo('kpax:none') . '</p>';
+else {
+    $content .= '<p>' . elgg_echo('kpax:none') . '</p>';
 }
 
 $body = elgg_view_layout('content', array(

@@ -30,7 +30,7 @@ if($vars['categories'] && $vars['platforms'] && $vars['skills'])
 					elgg_echo('kpax:category')."</b></td><td width=\"160px\"><b>". elgg_echo('kpax:platform')."</b></td><td width=\"160px\"><b>". 
 					elgg_echo('kpax:skill')."</b></td><td width=\"160px\"><b>". elgg_echo('kpax:tags')."</b></td>
 					<td width=\"160px\"><b>". elgg_echo('kpax:descripGame')."</b></td></tr>";
-			$i=0;
+
 			foreach ($vars['objGameList'] as $game) {
 				$catview = "";
 				$platview = "";
@@ -42,10 +42,9 @@ if($vars['categories'] && $vars['platforms'] && $vars['skills'])
 				if($game->idSkill != 0)
 					$skillview = $skillss[$game->idSkill];
 				$tagsview ="";
-				foreach($vars['tags'][$i] as $tag){
+				foreach($game->tags as $tag){
 					$tagsview .= $tag->tag." ";
 				}
-				$i++;
 				echo "<tr><td width=\"300px\"><a href=view/" . $game->idGame . ">". $game->name ."</a></td><td width=\"160px\">". 
 					$catview."</td><td width=\"160px\">". $platview."</td><td width=\"160px\">". $skillview."</td>".
 					"<td width=\"160px\">". $tagsview."</td><td width=\"160px\">". $game->descripGame."</td></tr>";

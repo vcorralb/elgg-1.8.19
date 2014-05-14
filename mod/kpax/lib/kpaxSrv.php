@@ -143,8 +143,8 @@ class kpaxSrv {
 // Fi NOU
 
 /*AGIRO*/
-	public function getListGamesSearch($name, $category, $platform, $skill, $sort, $campusSession) {
-		$text = urlencode($name . "#_#" . $category . "#_#" . $platform . "#_#" . $skill . "#_#" .  $sort);
+	public function getListGamesSearch($name, $category, $platform, $skill, $tag, $keyMeta, $valueMeta, $sort, $campusSession) {
+		$text = urlencode($name . "#_#" . $category . "#_#" . $platform . "#_#" . $skill . "#_#" . $tag . "#_#".  $keyMeta . "#_#" . $valueMeta . "#_#" . $sort);
 		return json_decode($this->service("game/" . $campusSession . "/list/" . $text));
     }
 	
@@ -171,6 +171,11 @@ class kpaxSrv {
     }
 	
 	/* metadata */
+	public function getMetaDatas($campusSession) {
+        $listMetaDatas = json_decode($this->service("game/metadata/" . $campusSession . "/list/"));
+        return $listMetaDatas;
+    }
+	
 	public function getMetaDatasGame($campusSession, $idGame) {
         $listMetaDatas = json_decode($this->service("game/metadata/" . $campusSession . "/list/" . $idGame));
         return $listMetaDatas;
