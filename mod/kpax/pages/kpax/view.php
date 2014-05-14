@@ -92,6 +92,8 @@ $content .= elgg_echo('kpax:tags').": ".$tagsview."<br />";
 
 $content .= elgg_echo('kpax:metadatas').": ".$metadatasview."<br />";
 
+$content .= elgg_echo('kpax:urlImage').": ".$game->urlImage."<br />";
+
 $content .= elgg_view_comments($kpax);
 
 $body = elgg_view_layout('content', array(
