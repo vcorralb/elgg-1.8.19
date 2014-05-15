@@ -44,7 +44,9 @@ if($vars['categories'] && $vars['platforms'] && $vars['skills'])
 					$skillview = $skillss[$game->idSkill];
 				$tagsview ="";
 				foreach($game->tags as $tag){
-					$tagsview .= $tag->tag." ";
+					if ($tag != null){
+						$tagsview .= $tag->tag." ";
+					}
 				}
 				echo "<tr><td width=\"300px\"><a href=view/" . $game->idGame . ">". $game->name ."</a></td><td width=\"160px\">". 
 					$catview."</td><td width=\"160px\">". $platview."</td><td width=\"160px\">". $skillview."</td>".

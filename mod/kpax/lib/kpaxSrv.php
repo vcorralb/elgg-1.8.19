@@ -147,7 +147,13 @@ class kpaxSrv {
 		$text = urlencode($name . "#_#" . $category . "#_#" . $platform . "#_#" . $skill . "#_#" . $tag . "#_#".  $keyMeta . "#_#" . $valueMeta . "#_#" . $sort);
 		return json_decode($this->service("game/" . $campusSession . "/list/" . $text));
     }
-	
+
+/*SIMILAR GAMES*/
+	public function getListSimilarGames($idGame, $campusSession) {
+		return json_decode($this->service("game/" . $campusSession . "/listsimilar/" . $idGame));
+    }
+
+
 	/*Platforms*/
 	public function getPlatforms($campusSession) {
 		$listPlatforms = json_decode($this->service("game/platform/" . $campusSession . "/list/"));

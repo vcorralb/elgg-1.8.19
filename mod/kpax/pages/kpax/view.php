@@ -29,10 +29,13 @@ $platforms = $objKpax->getPlatforms($_SESSION["campusSession"]);
 $skills = $objKpax->getSkills($_SESSION["campusSession"]);
 
 /* Get tags*/
-$tags = $objKpax->getTagsGame($_SESSION["campusSession"],$idGame);
+//$tags = $objKpax->getTagsGame($_SESSION["campusSession"],$idGame);
 
 /* Get metadata */
-$metadatas = $objKpax->getMetaDatasGame($_SESSION["campusSession"],$idGame);
+//$metadatas = $objKpax->getMetaDatasGame($_SESSION["campusSession"],$idGame);
+
+/* Get similar games */
+$similarGameList = $objKpax->getListSimilarGames($idGame, $_SESSION["campusSession"]);
 
 $cats = array();
 $plats = array();
@@ -62,13 +65,17 @@ if($game->idPlatform != 0)
 	$platview = $plats[$game->idPlatform];
 if($game->idSkill != 0)
 	$skillview = $skillss[$game->idSkill];
-foreach($tags as $tag){
-	$tagsview .= $tag->tag." ";
+foreach($game->tags as $tag){
+	if ($tag != null){
+		$tagsview .= $tag->tag." ";
+	}
 }
 
-foreach($metadatas as $metadata){
-	$metadatasview .= "<li>".$metadata->keyMeta.": ";
-	$metadatasview .= $metadata->valueMeta."</li>";
+foreach($game->metadatas as $metadata){
+	if ($metadata != null){
+		$metadatasview .= "<li>".$metadata->keyMeta.": ";
+		$metadatasview .= $metadata->valueMeta."</li>";
+	}
 }
 $metadatasview .= "</ul>";
 
@@ -93,6 +100,24 @@ $content .= elgg_echo('kpax:tags').": ".$tagsview."<br />";
 $content .= elgg_echo('kpax:metadatas').": ".$metadatasview."<br />";
 
 $content .= elgg_echo('kpax:urlImage').": ".$game->urlImage."<br />";
+
+$content .= "<br /><b>".elgg_echo('kpax:similarGames')."</b><br />";
+
+/* Tags from similar games */
+$tagsview = "";
+
+
+foreach ($similarGameList as $similarGame) {
+	foreach($similarGame->tags as $tag){
+		if ($tag != null){
+			$similargametagsview .= $tag->tag." ";
+		}
+	}
+	$content .= elgg_echo('kpax:name').": ".$similarGame->name."<br />";
+	$content .= elgg_echo('kpax:descripGame').": ".$similarGame->descripGame."<br />";
+	$content .= elgg_echo('kpax:tags').": ".$similargametagsview."<br />";
+	$content .= elgg_echo('kpax:urlImage').": ".$similarGame->urlImage."<br />";
+}
 
 $content .= elgg_view_comments($kpax);
 

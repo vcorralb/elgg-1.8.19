@@ -11,7 +11,7 @@ $skills = $objKpax->getSkills($_SESSION["campusSession"]);
 $metadatas = $objKpax->getMetaDatas($_SESSION["campusSession"]);
 
 /* Obtain category name, platform name and skill name for each id */
-$cats = array();
+/*$cats = array();
 $plats = array();
 $skillss = array();
 $metadatass = array();
@@ -28,7 +28,7 @@ foreach($skills as $skill)
 {
 	$skillss[$skill->idSkill] = $skill->name;
 }
-/*foreach($metadatas as $metadata)
+foreach($metadatas as $metadata)
 {
 	$metadatass[$metadata->idMetadata] = $metadata->keyMeta;
 }*/
