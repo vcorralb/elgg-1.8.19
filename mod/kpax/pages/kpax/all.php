@@ -34,14 +34,14 @@ foreach($metadatas as $metadata)
 }*/
 
 /* Save last form value */
-$name = "";
-$category = "";
-$platform = "";
-$ski = "";
-$tag = "";
-$keyMeta = "";
-$valueMeta = "";
-$sort = "";
+$name = " ";
+$category = "0";
+$platform = "0";
+$ski = "0";
+$tag = " ";
+$keyMeta = "0";
+$valueMeta = " ";
+$sort = "1";
 if(isset($_POST['name'])) $name = $_POST['name'];
 if(isset($_POST['category'])) $category = $_POST['category'];
 if(isset($_POST['platform'])) $platform = $_POST['platform'];
@@ -133,7 +133,53 @@ $content .= "</table></form><hr/><br/>";
 /* Call kPAX */
 //if(strlen($name) != 0 || strlen($category) != 0 || strlen($platform) != 0 || strlen($ski) != 0 || strlen($tag) != 0 || strlen($keyMeta) != 0 || strlen($valueMeta) != 0) 
 //{
-	$gameList = $objKpax->getListGamesSearch($name, $category, $platform, $ski, $tag, $keyMeta, $valueMeta, $sort, $_SESSION["campusSession"]);
+	//The first time the application shows the results, it shows the first result ($offset = 0) and 9 results ($limit = 9).
+	//$limit is every time 9, but offset depends on pagination
+	$limit = 9;
+	if (isset($_POST['offset'])){
+		$offset = $_POST['offset'];
+	}
+	else {
+		$offset = 0;
+	}
+	$gameList = $objKpax->getListGamesSearch($name, $category, $platform, $ski, $tag, $keyMeta, $valueMeta, $sort, $offset, $limit, $_SESSION["campusSession"]);
+	
+	
+//Pagination
+$content .= "<div>";
+if ($gameList->offset > 0){
+	//Previous
+	$content .= "<form method=\"post\" action=\"all\">";
+	$content .= "<input type=\"hidden\" name=\"name\" size =\"50\" value=\"".$name."\"/>";
+	$content .= "<input type=\"hidden\" name=\"category\" size =\"50\" value=\"".$category."\"/>";
+	$content .= "<input type=\"hidden\" name=\"platform\" size =\"50\" value=\"".$platform."\"/>";
+	$content .= "<input type=\"hidden\" name=\"skill\" size =\"50\" value=\"".$ski."\"/>";
+	$content .= "<input type=\"hidden\" name=\"tag\" size =\"50\" value=\"".$tag."\"/>";
+	$content .= "<input type=\"hidden\" name=\"keymeta\" size =\"50\" value=\"".$keyMeta."\"/>";
+	$content .= "<input type=\"hidden\" name=\"valuemeta\" size =\"50\" value=\"".$valueMeta."\"/>";
+	$content .= "<input type=\"hidden\" name=\"sort\" size =\"50\" value=\"".$sort."\"/>";
+	$content .= "<input type=\"hidden\" name=\"offset\" size =\"50\" value=\"".($offset-$limit)."\"/>";
+	$content .= "<input type=\"submit\" value=\"".elgg_echo('kpax:previous')."\" />";
+	$content .= "</form>";
+}
+if ($gameList->offset + $gameList->limit < $gameList->total->integer){
+	//Next
+	$content .= "<form method=\"post\" action=\"all\">";
+	$content .= "<input type=\"hidden\" name=\"name\" size =\"50\" value=\"".$name."\"/>";
+	$content .= "<input type=\"hidden\" name=\"category\" size =\"50\" value=\"".$category."\"/>";
+	$content .= "<input type=\"hidden\" name=\"platform\" size =\"50\" value=\"".$platform."\"/>";
+	$content .= "<input type=\"hidden\" name=\"skill\" size =\"50\" value=\"".$ski."\"/>";
+	$content .= "<input type=\"hidden\" name=\"tag\" size =\"50\" value=\"".$tag."\"/>";
+	$content .= "<input type=\"hidden\" name=\"keymeta\" size =\"50\" value=\"".$keyMeta."\"/>";
+	$content .= "<input type=\"hidden\" name=\"valuemeta\" size =\"50\" value=\"".$valueMeta."\"/>";
+	$content .= "<input type=\"hidden\" name=\"sort\" size =\"50\" value=\"".$sort."\"/>";
+	$content .= "<input type=\"hidden\" name=\"offset\" size =\"50\" value=\"".($offset+$limit)."\"/>";
+	$content .= "<input type=\"submit\" value=\"".elgg_echo('kpax:next')."\" />";
+	$content .= "</form>";
+
+}
+$content .= "</div>";
+	
 //}
 //else $gameList = $objKpax->getListGames($_SESSION["campusSession"]);
 
@@ -155,7 +201,7 @@ $content .= "</table></form><hr/><br/>";
 	'view_toggle_type' => false
 );*/
 
-if(isset($gameList))
+if(isset($gameList->games))
 {
 	system_message(elgg_echo('kpax:list:success'));
 	/*
@@ -182,8 +228,8 @@ else
 	register_error(elgg_echo('kpax:list:failed'));
 
 /* Show results */
-if(isset($gameList) && sizeof($gameList) > 0) { 	
-	$content .= elgg_view('kpax/games_list', array('objGameList' => $gameList, 'categories' => $categories, 'platforms' => $platforms, 'skills' => $skills));
+if(isset($gameList->games) && sizeof($gameList->games) > 0) { 	
+	$content .= elgg_view('kpax/games_list', array('objGameList' => $gameList->games, 'categories' => $categories, 'platforms' => $platforms, 'skills' => $skills));
 }
 else {
     $content .= '<p>' . elgg_echo('kpax:none') . '</p>';

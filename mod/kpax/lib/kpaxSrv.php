@@ -143,9 +143,9 @@ class kpaxSrv {
 // Fi NOU
 
 /*AGIRO*/
-	public function getListGamesSearch($name, $category, $platform, $skill, $tag, $keyMeta, $valueMeta, $sort, $campusSession) {
+	public function getListGamesSearch($name, $category, $platform, $skill, $tag, $keyMeta, $valueMeta, $sort, $offset, $limit, $campusSession) {
 		$text = urlencode($name . "#_#" . $category . "#_#" . $platform . "#_#" . $skill . "#_#" . $tag . "#_#".  $keyMeta . "#_#" . $valueMeta . "#_#" . $sort);
-		return json_decode($this->service("game/" . $campusSession . "/list/" . $text));
+		return json_decode($this->service("game/" . $campusSession . "/list/" . $text . "?offset=" . $offset . "&limit=" . $limit));
     }
 
 /*SIMILAR GAMES*/
