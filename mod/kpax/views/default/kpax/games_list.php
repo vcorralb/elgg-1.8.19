@@ -1,62 +1,77 @@
 	<?php
 echo "<h2>".elgg_echo('kpax:listgames')."</h2>";
-if($vars['categories'] && $vars['platforms'] && $vars['skills'])
+if($vars['categories'] /*&& $vars['platforms'] && $vars['skills']*/)
 {
 	$cats = array();
-	$plats = array();
-	$skillss = array();
+	/*$plats = array();
+	$skillss = array();*/
 
 	foreach($vars['categories'] as $cat)
 	{
 		$cats[$cat->idCategory] = $cat->name;
 	}
-	foreach($vars['platforms'] as $plat)
+	/*foreach($vars['platforms'] as $plat)
 	{
 		$plats[$plat->idPlatform] = $plat->name;
 	}
 	foreach($vars['skills'] as $skill)
 	{
 		$skillss[$skill->idSkill] = $skill->name;
-	}
+	}*/
 
-	if ($vars['objGameList']) {
-		?>
-		<br/>
-		<div class='score' style='border:1px solid #cccccc; padding:5px; padding-left: 12px; text-align:left;width: 98%;'>
-			<p><b><?php echo elgg_echo('kpax:game'); ?></b></p>
-			<table class="listgames">
-			<?php
-			echo "<tr height=\"40px\"><td width=\"300px\"><b>". elgg_echo('kpax:name') ."</b></td><td width=\"160px\"><b>". 
-					elgg_echo('kpax:category')."</b></td><td width=\"160px\"><b>". elgg_echo('kpax:platform')."</b></td><td width=\"160px\"><b>". 
-					elgg_echo('kpax:skill')."</b></td><td width=\"160px\"><b>". elgg_echo('kpax:tags')."</b></td>".
-					"<td width=\"160px\"><b>". elgg_echo('kpax:descripGame')."</b></td>".
-					"<td width=\"160px\"><b>". elgg_echo('kpax:urlImage')."</b></td>"."</tr>";
-
+	if ($vars['objGameList']) {	
+		
+		echo "<div class='contenedor_juegos'>";
+		
 			foreach ($vars['objGameList'] as $game) {
 				$catview = "";
-				$platview = "";
-				$skillview = "";
+				/*$platview = "";
+				$skillview = "";*/
 				if($game->idCategory != 0)
 					$catview = $cats[$game->idCategory];
-				if($game->idPlatform != 0)
+				/*if($game->idPlatform != 0)
 					$platview = $plats[$game->idPlatform];
 				if($game->idSkill != 0)
-					$skillview = $skillss[$game->idSkill];
+					$skillview = $skillss[$game->idSkill];*/
 				$tagsview ="";
 				foreach($game->tags as $tag){
 					if ($tag != null){
 						$tagsview .= $tag->tag." ";
 					}
 				}
-				echo "<tr><td width=\"300px\"><a href=view/" . $game->idGame . ">". $game->name ."</a></td><td width=\"160px\">". 
-					$catview."</td><td width=\"160px\">". $platview."</td><td width=\"160px\">". $skillview."</td>".
-					"<td width=\"160px\">". $tagsview."</td><td width=\"160px\">". $game->descripGame."</td>".
-					"<td width=\"160px\">". $game->urlImage."</td></tr>";
+				echo "<div class='cuadro_juego'>";
+					
+					echo "<a class= 'juego_link' href='"."view/" . $game->idGame."'></a>";
+					echo "<div class='juego_foto'>";
+						echo "<a class= 'juego_link' href='"."view/" . $game->idGame."'>";
+							echo "<img src='".$game->urlImage."' alt='".$game->name."' width='140' height='160' />";
+							echo "<span class='transicion' />";	
+						echo "</a>";
+					echo "</div>";
+					echo "<div class='juego_texto'>";
+						echo "<a class= 'juego_link' href='"."view/" . $game->idGame."'></a>";
+						echo "<h2><a href='"."view/" . $game->idGame."'>".$game->name."<span class='final_parrafo final_parrafo_titulo'></span></a>";
+							
+						echo "</h2>";
+						echo "<div class='texto_descripcion'>";
+							echo "<p>".$game->descripGame."</p>";
+							echo "<span class='final_parrafo'></span>";
+							echo "<a class= 'juego_link' href='"."view/" . $game->idGame."'></a>";
+						echo "</div>";
+						echo "<div class='texto_descripcion'>";
+							echo "<p>".$catview."</p>";
+							echo "<span class='final_parrafo'></span>";
+							echo "<a class= 'juego_link' href='"."view/" . $game->idGame."'></a>";
+						echo "</div>";
+						echo "<div class='texto_descripcion'>";
+							echo "<p>".$tagsview."</p>";
+							echo "<span class='final_parrafo'></span>";
+							echo "<a class= 'juego_link' href='"."view/" . $game->idGame."'></a>";
+						echo "</div>";
+					echo "</div>";
+				echo "</div>";		
 			}
-			?>
-			</table>
-		</div>
-		<?php
+		echo "</div>";
 	}
 	else
 	{ 

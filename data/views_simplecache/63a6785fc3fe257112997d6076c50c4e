@@ -721,7 +721,7 @@ input[type="radio"] {
   	color: #222;
 	text-shadow: 0px 1px 1px #fff;
   	border: 1px solid #888;
-	background: #fff url(http://localhost/elgg-1.8.19/mod/themekPAX/graphics/button.png) repeat-x left top;
+	background: #fff url(http://localhost/elgg-1.8.19/mod/kpax_theme_responsive/graphics/button.png) repeat-x left top;
 	-webkit-transition:all ease .4s;
  	transition:all ease .4s;
 }
@@ -2223,7 +2223,7 @@ a.elgg-widget-collapsed:before {
 
 }
 .elgg-page-default .elgg-page-body > .elgg-inner {
-	max-width: 1100px;
+	max-width: 1300px;
 	_width:990px; /*IE6*/
 	margin: .8em auto;
 	padding:0 2em;
@@ -2270,7 +2270,7 @@ a.elgg-widget-collapsed:before {
 /***** PAGE HEADER ******/
 .elgg-page-header {
 	position: relative;
-	background: url(http://localhost/elgg-1.8.19/mod/themekPAX/graphics/header-gradients.png) no-repeat 200px 0, url(http://localhost/elgg-1.8.19/mod/themekPAX/graphics/header.png) repeat-x, #000;
+	background: url(http://localhost/elgg-1.8.19/mod/kpax_theme_responsive/graphics/header-gradients.png) no-repeat 200px 0, url(http://localhost/elgg-1.8.19/mod/kpax_theme_responsive/graphics/header.png) repeat-x, #000;
 }
 .elgg-page-header > .elgg-inner {
 	position: relative;
@@ -2335,7 +2335,7 @@ a.elgg-widget-collapsed:before {
 
 .elgg-page-footer > .elgg-inner {
 	height: 65px;
-	background: #222 url(http://localhost/elgg-1.8.19/mod/themekPAX/graphics/footer.png) 20px 0 no-repeat;
+	background: #222 url(http://localhost/elgg-1.8.19/mod/kpax_theme_responsive/graphics/footer.png) 20px 0 no-repeat;
 }
 
 

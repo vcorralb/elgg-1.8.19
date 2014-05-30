@@ -5,22 +5,19 @@
  *
  * @package ElggBookmarks
  */
-$kpax = get_entity(get_input('guid'));
+//$kpax = get_entity(get_input('guid'));
 
 
-//IMPMORTANT: AIXÒ NO FUNCIONA!
-$page_owner = elgg_get_page_owner_entity();
+//IMPORTANT: AIXÒ NO FUNCIONA!
+//$page_owner = elgg_get_page_owner_entity();
 
-$crumbs_title = $page_owner->name;
-
-
-//NOU
 $objKpax = new kpaxSrv(elgg_get_logged_in_user_entity()->username);
 
-//NOVA FORMA DE EXTREURE ID!
+//New process to extract id's game
 $urlVector = explode("/",$_SERVER['REQUEST_URI']);
 $idGame = $urlVector[count($urlVector)-1];
 
+/* Call kPAX */
 $game = $objKpax->getGame($idGame, $_SESSION["campusSession"]);
 
 /* Get categories, platforms and skills */
@@ -79,34 +76,47 @@ foreach($game->metadatas as $metadata){
 }
 $metadatasview .= "</ul>";
 
-////
 
 //$title = $kpax->title;
-$title = $game->name;
+//$title = $game->name;
 
-elgg_push_breadcrumb($title);
+//Breadcrumb
+elgg_push_breadcrumb($game->name);
 
-$content = elgg_view_entity($kpax, array('full_view' => true));
+//$content = elgg_view_entity($kpax, array('full_view' => true));
 
-$content .= elgg_echo('kpax:name').": ".$game->name."<br/>";
-$content .= elgg_echo('kpax:descripgame').": ".$game->descripGame."<br/>";
-
-$content .= "<br/>".elgg_echo('kpax:category').": ".$catview."<br/>";
-$content .= elgg_echo('kpax:platform').": ".$platview."<br/>";
-$content .= elgg_echo('kpax:skill').": ".$skillview."<br/>";
-
-$content .= elgg_echo('kpax:tags').": ".$tagsview."<br />";
-
-$content .= elgg_echo('kpax:metadatas').": ".$metadatasview."<br />";
-
-$content .= elgg_echo('kpax:urlImage').": ".$game->urlImage."<br />";
-
-$content .= "<br /><b>".elgg_echo('kpax:similarGames')."</b><br />";
-
-/* Tags from similar games */
-$tagsview = "";
-
-
+$content.= "<div class='ficha_juego'>";
+	$content.= "<div class='ficha_juego_izquierda'>";
+		$content.= "<div class='juego'>";
+			$content.= "<div class='juego_foto_wrapper'>";
+				$content.="<div class='juego_foto'>";
+					$content.="<img src='".$game->urlImage."' alt='".$game->name."' width='140' height='160' />";
+				$content.="</div>";
+			$content.= "</div>";
+			$content.= "<div class='juego_texto'>";
+				$content.= "<h2>".$game->name."</h2>";
+				$content.= "<div class='texto_descripcion'>";
+					$content.= "<p>".elgg_echo('kpax:description').$game->descripGame."</p>";
+				$content.= "</div>";
+				$content.= "<div class='texto_descripcion'>";
+					$content.= "<p>".elgg_echo('kpax:category').": ".$catview."</p>";
+				$content.= "</div>";
+				$content.= "<div class='texto_descripcion'>";
+					$content.= "<p>".elgg_echo('kpax:platform').": ".$platview."</p>";
+				$content.= "</div>";
+				$content.= "<div class='texto_descripcion'>";
+					$content.= "<p>".elgg_echo('kpax:skill').": ".$skillview."</p>";
+				$content.= "</div>";
+				$content.= "<div class='texto_descripcion'>";
+					$content.= "<p>".elgg_echo('kpax:tags').": ".$tagsview."</p>";
+				$content.= "</div>";
+				$content.= "<div class='texto_descripcion'>";
+					$content.= "<p>".elgg_echo('kpax:metadatas').": ".$metadatasview."</p>";
+				$content.= "</div>";
+			$content.= "</div>";
+		$content.= "</div>";
+		$content.= "<div class='doscol'>";
+$content.="<h3>".elgg_echo('kpax:similarGames')."</h3>";
 foreach ($similarGameList as $similarGame) {
 	foreach($similarGame->tags as $tag){
 		if ($tag != null){
@@ -118,14 +128,32 @@ foreach ($similarGameList as $similarGame) {
 	$content .= elgg_echo('kpax:tags').": ".$similargametagsview."<br />";
 	$content .= elgg_echo('kpax:urlImage').": ".$similarGame->urlImage."<br />";
 }
+		$content.= "</div>";
+		$content.= "<div class='doscol'>";
+			$content.="<h3>".elgg_echo('kpax:comments')."</h3>";
+		$content.= "</div>";
+	$content.= "</div>";
+	$content.= "<div class='ficha_juego_derecha'>";	
+		$content.="<h3>".elgg_echo('kpax:gamestatisticssocialnetworks')."</h3>";
+		$content.="<div class='clearer'></div>";
+	$content.= "</div>";
 
-$content .= elgg_view_comments($kpax);
+$content.= "</div>";
 
-$body = elgg_view_layout('content', array(
+$content.="<div class='clearer'></div>";
+
+//$content .= elgg_view_comments($kpax);
+
+$body = elgg_view_layout('one_column', array(
     'content' => $content,
-    'title' => $title,
+    'title' => ''/*$title*/,
     'filter' => '',
     'header' => '',
         ));
+
+/* CSS include */
+$css_url = 'mod/kpax/views/default/css/elements/game.css';
+elgg_register_css('game', $css_url);
+elgg_load_css('game');
 
 echo elgg_view_page($title, $body);

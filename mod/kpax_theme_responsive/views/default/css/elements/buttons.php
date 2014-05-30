@@ -22,7 +22,7 @@
   	color: #222;
 	text-shadow: 0px 1px 1px #fff;
   	border: 1px solid #888;
-	background: #fff url(<?php echo elgg_get_site_url(); ?>mod/themekPAX/graphics/button.png) repeat-x left top;
+	background: #fff url(<?php echo elgg_get_site_url(); ?>mod/kpax_theme_responsive/graphics/button.png) repeat-x left top;
 	-webkit-transition:all ease .4s;
  	transition:all ease .4s;
 }

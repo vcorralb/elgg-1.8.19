@@ -8,7 +8,7 @@
         elgg_unregister_menu_item('topbar', 'elgg_logo');
 	    $pageHandler = 'theme_kPAX';
 		elgg_register_page_handler($pageHandler,'theme_kPAX_page_handler');
-		elgg_register_js('kpax_js','mod/theme_kPAX/views/default/js/kpax.js','footer');
+		elgg_register_js('kpax_js','mod/kpax_theme_responsive/views/default/js/kpax.js','footer');
 		elgg_load_js("Modernizr");
 		elgg_load_js('kpax_js');
     }
