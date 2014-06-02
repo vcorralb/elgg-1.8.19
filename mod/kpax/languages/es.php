@@ -113,7 +113,34 @@ $spanish = array(
     'kPAX:noGames' => "Todavía no tienes juegos en kPAX",
     'kPAX:my_dev_games' => "Mis juegos (desarrollados)",
     'kpax:tagline' => '¡Juguemos en serio!',
-	'kpax:dragdrop' => 'También puedes arrastrar una imagen desde el escritorio'
+	'kpax:dragdrop' => 'También puedes arrastrar una imagen desde el escritorio',
+	
+	/*PFM vcorralb*/
+	'kpax:games' => 'Juegos',
+	'kpax:game:category' => 'Categoría',
+	'kpax:game:allcategories' => 'Todas',
+	'kpax:game:name' => 'Nombre',
+	'kpax:game:tag' => 'Etiqueta',
+	'kpax:game:metadata' => 'Metadato',
+	'kpax:game:allmetadata' => 'Todos',
+	'kpax:game:platform' => 'Plataforma',
+	'kpax:game:allplatforms' => 'Todas',
+	'kpax:game:skill' => 'Habilidad',
+	'kpax:game:allskills' => 'Todas',
+	'kpax:game:sort' => 'Ordenar',
+	'kpax:game:search' => 'Buscar',
+	'kpax:game:previous' => 'Anteriores',
+	'kpax:game:next' => 'Siguientes',
+	'kpax:list:success' => 'Listado exitoso',
+	'kpax:list:failed' => 'Listado fallido',
+	'kpax:game:description' => 'Descripción',
+	'kpax:play' => 'Jugar',
+	'kpax:similarGames' => 'Juegos similares',
+	'kpax:comments' => 'Comentarios',
+	'kpax:gamestatisticssocialnetworks' => 'Estadísticas de juegos y redes sociales',
+	'kpax:listgames' => 'Listado de juegos',
+	'kpax:nogames' => 'No games that meet the filter criteria entered',
+	'kpax:all' => 'Juegos'
 );
 
 add_translation('es', $spanish);

@@ -96,39 +96,67 @@ $content.= "<div class='ficha_juego'>";
 			$content.= "<div class='juego_texto'>";
 				$content.= "<h2>".$game->name."</h2>";
 				$content.= "<div class='texto_descripcion'>";
-					$content.= "<p>".elgg_echo('kpax:description').$game->descripGame."</p>";
+					$content.= "<p>".elgg_echo('kpax:game:description').": ".$game->descripGame."</p>";
 				$content.= "</div>";
 				$content.= "<div class='texto_descripcion'>";
-					$content.= "<p>".elgg_echo('kpax:category').": ".$catview."</p>";
+					$content.= "<p>".elgg_echo('kpax:game:category').": ".$catview."</p>";
 				$content.= "</div>";
 				$content.= "<div class='texto_descripcion'>";
-					$content.= "<p>".elgg_echo('kpax:platform').": ".$platview."</p>";
+					$content.= "<p>".elgg_echo('kpax:game:platform').": ".$platview."</p>";
 				$content.= "</div>";
 				$content.= "<div class='texto_descripcion'>";
-					$content.= "<p>".elgg_echo('kpax:skill').": ".$skillview."</p>";
+					$content.= "<p>".elgg_echo('kpax:game:skill').": ".$skillview."</p>";
 				$content.= "</div>";
 				$content.= "<div class='texto_descripcion'>";
-					$content.= "<p>".elgg_echo('kpax:tags').": ".$tagsview."</p>";
+					$content.= "<p>".elgg_echo('kpax:game:tag').": ".$tagsview."</p>";
 				$content.= "</div>";
 				$content.= "<div class='texto_descripcion'>";
-					$content.= "<p>".elgg_echo('kpax:metadatas').": ".$metadatasview."</p>";
+					$content.= "<p>".elgg_echo('kpax:game:metadata').": ".$metadatasview."</p>";
 				$content.= "</div>";
 			$content.= "</div>";
+			$content.="<input id='play_button' name='play_button' type='submit' value='".elgg_echo('kpax:play')."' />";
 		$content.= "</div>";
 		$content.= "<div class='doscol'>";
-$content.="<h3>".elgg_echo('kpax:similarGames')."</h3>";
-foreach ($similarGameList as $similarGame) {
-	foreach($similarGame->tags as $tag){
-		if ($tag != null){
-			$similargametagsview .= $tag->tag." ";
-		}
-	}
-	$content .= elgg_echo('kpax:name').": ".$similarGame->name."<br />";
-	$content .= elgg_echo('kpax:descripGame').": ".$similarGame->descripGame."<br />";
-	$content .= elgg_echo('kpax:tags').": ".$similargametagsview."<br />";
-	$content .= elgg_echo('kpax:urlImage').": ".$similarGame->urlImage."<br />";
-}
+			$content.= "<h3>".elgg_echo('kpax:similarGames')."</h3>";
+			$content.= "<div class='contenedor_juegos'>";
+			foreach ($similarGameList as $similarGame) {
+				foreach($similarGame->tags as $tag){
+					if ($tag != null){
+						$similargametagsview .= $tag->tag." ";
+					}
+				}
+	
+				$content.= "<div class='cuadro_juego'>";
+					$content.= "<a class= 'juego_link' href='".$similarGame->idGame."'></a>";
+					$content.= "<div class='juego_foto'>";
+						$content.= "<a class= 'juego_link' href='".$similarGame->idGame."'>";
+							$content.= "<img src='".$similarGame->urlImage."' alt='".$similarGame->name."' width='140' height='160' />";
+							$content.= "<span class='transicion' />";	
+						$content.= "</a>";
+					$content.= "</div>";
+					$content.= "<div class='juego_texto'>";
+						$content.= "<a class= 'juego_link' href='".$similarGame->idGame."'></a>";
+						$content.= "<h2><a href='".$similarGame->idGame."'>".$similarGame->name."<span class='final_parrafo final_parrafo_titulo'></span></a>";
+							
+						$content.= "</h2>";
+						$content.= "<div class='texto_descripcion'>";
+							$content.= "<p>".$similarGame->descripGame."</p>";
+							$content.= "<span class='final_parrafo'></span>";
+							$content.= "<a class= 'juego_link' href='".$similarGame->idGame."'></a>";
+						$content.= "</div>";
+						$content.= "<div class='texto_descripcion'>";
+							$content.= "<p>".$similargametagsview."</p>";
+							$content.= "<span class='final_parrafo'></span>";
+							$content.= "<a class= 'juego_link' href='".$similarGame->idGame."'></a>";
+						$content.= "</div>";
+					$content.= "</div>";
+					
+				$content.= "</div>";
+				
+			}
+			$content.= "</div>";
 		$content.= "</div>";
+		
 		$content.= "<div class='doscol'>";
 			$content.="<h3>".elgg_echo('kpax:comments')."</h3>";
 		$content.= "</div>";

@@ -112,7 +112,34 @@ $catalan = array(
     'kPAX:noGames' => "Encara no tens jocs a kPAX",
     'kPAX:my_dev_games' => "Els meus jocs (desenvolupats)",
     'kpax:tagline' => 'Juguem seriosament!',
-	'kpax:dragdrop' => 'Tamb� pots arrossegar una imatge desde l\'escriptori'
+	'kpax:dragdrop' => 'Tamb� pots arrossegar una imatge desde l\'escriptori',
+	
+	/*PFM vcorralb*/
+	'kpax:games' => 'Jocs',
+	'kpax:game:category' => 'Categoria',
+	'kpax:game:allcategories' => 'Totes',
+	'kpax:game:name' => 'Nom',
+	'kpax:game:tag' => 'Etiqueta',
+	'kpax:game:metadata' => 'Metadada',
+	'kpax:game:allmetadata' => 'Totes',
+	'kpax:game:platform' => 'Plataforma',
+	'kpax:game:allplatforms' => 'Totes',
+	'kpax:game:skill' => 'Habilitat',
+	'kpax:game:allskills' => 'Totes',
+	'kpax:game:sort' => 'Ordenar',
+	'kpax:game:search' => 'Cercar',
+	'kpax:game:previous' => 'Anteriors',
+	'kpax:game:next' => 'Següents',
+	'kpax:list:success' => 'Llistat exitós',
+	'kpax:list:failed' => 'Llistat fallit',
+	'kpax:game:description' => 'Descripció',
+	'kpax:play' => 'Jugar',
+	'kpax:similarGames' => 'Jocs similars',
+	'kpax:comments' => 'Comentaris',
+	'kpax:gamestatisticssocialnetworks' => 'Estadístiques de jocs i xarxes socials',
+	'kpax:listgames' => 'Llistat de jocs',
+	'kpax:nogames' => 'No hi ha jocs que compleixin els criteris de filtratge introduïts',
+	'kpax:all' => 'Jocs'
 );
 
 add_translation('ca', $catalan);

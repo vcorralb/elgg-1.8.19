@@ -34,13 +34,13 @@ foreach($metadatas as $metadata)
 }*/
 
 /* Save last form value */
-$name = " ";
+$name = "";
 $category = "0";
 $platform = "0";
 $ski = "0";
-$tag = " ";
+$tag = "";
 $keyMeta = "0";
-$valueMeta = " ";
+$valueMeta = "";
 $sort = "1";
 if(isset($_POST['name'])) $name = $_POST['name'];
 if(isset($_POST['category'])) $category = $_POST['category'];
@@ -56,7 +56,7 @@ if(isset($_POST['sort'])) $sort = $_POST['sort'];
 	$content.= "<br/><br/>";
 	$content.="<div class='listado_juegos'>";
 		$content.="<div class='menu_vertical'>";
-			$content.="<h1>".elgg_echo('kpax:category')."</h1>";
+			$content.="<h1>".elgg_echo('kpax:game:category')."</h1>";
 				$selected="";
 				if("0" == $category){
 					$selected="font-weight: bold";
@@ -64,7 +64,7 @@ if(isset($_POST['sort'])) $sort = $_POST['sort'];
 				$content .= "<form method='post' action='all'>";
 				$content .= "<fieldset>";
 				$content .= "<input type='hidden' name='category' value='0' />";
-				$content .= "<input style='".$selected."' type='submit' value='".elgg_echo('kpax:allcategories')."' />";
+				$content .= "<input style='".$selected."' type='submit' value='".elgg_echo('kpax:game:allcategories')."' />";
 				$content .= "</fieldset>";
 				$content .= "</form>";
 				foreach($categories as $cat)
@@ -89,18 +89,18 @@ if(isset($_POST['sort'])) $sort = $_POST['sort'];
 					$content.="<div class='menu_horizontal_izquierda'>";
 						$content .= "<input type='hidden' name='category' value='".$category."'/>";
 						$content.="<p>";
-							$content.="<label for='name'>".elgg_echo('kpax:name').": </label>";
+							$content.="<label for='name'>".elgg_echo('kpax:game:name').": </label>";
 							$content.="<input class='' type='text' name='name' id='name' value='".$name."'/>";
 						$content.="</p>";
 						$content.="<p>";
-							$content.="<label for='tag'>".elgg_echo('kpax:tag').": </label>";
+							$content.="<label for='tag'>".elgg_echo('kpax:game:tag').": </label>";
 							$content.="<input class='' type='text' name='tag' id='tag' value='".$tag."'/>";
 						$content.="</p>";
 
 						$content.="<p>";
-							$content.="<label for='keymeta'>".elgg_echo('kpax:metadata').": </label>";
+							$content.="<label for='keymeta'>".elgg_echo('kpax:game:metadata').": </label>";
 							$content.="<select class='' name='keymeta' id='keymeta' >";
-								$content .= "<option value='0'>".elgg_echo('kpax:allmetadata')."</option>";
+								$content .= "<option value='0'>".elgg_echo('kpax:game:allmetadata')."</option>";
 								foreach($metadatas as $metadata)
 								{
 									$selected = "";
@@ -115,9 +115,9 @@ if(isset($_POST['sort'])) $sort = $_POST['sort'];
 					
 					$content.="<div class='menu_horizontal_derecha'>";
 						$content.="<p>";
-							$content.="<label for='platform'>".elgg_echo('kpax:platform').": </label>";
+							$content.="<label for='platform'>".elgg_echo('kpax:game:platform').": </label>";
 							$content.="<select class='' name='platform' id='platform' >";
-								$content.="<option value='0'>".elgg_echo('kpax:allplatforms')."</option>";
+								$content.="<option value='0'>".elgg_echo('kpax:game:allplatforms')."</option>";
 								foreach($platforms as $plat)
 								{
 									$selected = "";
@@ -129,9 +129,9 @@ if(isset($_POST['sort'])) $sort = $_POST['sort'];
 						$content.="</p>";
 
 						$content.="<p>";
-							$content.="<label for='skill'>".elgg_echo('kpax:skill').": </label>";
+							$content.="<label for='skill'>".elgg_echo('kpax:game:skill').": </label>";
 							$content.="<select class='' name='skill' id='skill' >";
-								$content .= "<option value='0'>".elgg_echo('kpax:allskills')."</option>";
+								$content .= "<option value='0'>".elgg_echo('kpax:game:allskills')."</option>";
 								foreach($skills as $skill)
 								{
 									$selected = "";
@@ -163,19 +163,19 @@ else if("5" == $sort)
 	
 				$content.="<div class='menu_horizontal_orden'>";
 					$content.="<p>";
-						$content.="<label for='sort'>".elgg_echo('kpax:sort').": </label>";
+						$content.="<label for='sort'>".elgg_echo('kpax:game:sort').": </label>";
 						$content.="<select class='' name='sort' id='sort' >";
-							$content.="<option value='1' ".$selectedordenacio1.">".elgg_echo('kpax:name')."</option>";
-							$content.="<option value='2' ".$selectedordenacio2.">".elgg_echo('kpax:category')."</option>";
-							$content.="<option value='3' ".$selectedordenacio3.">".elgg_echo('kpax:platform')."</option>";
-							$content.="<option value='4' ".$selectedordenacio4.">".elgg_echo('kpax:skill')."</option>";
+							$content.="<option value='1' ".$selectedordenacio1.">".elgg_echo('kpax:game:name')."</option>";
+							$content.="<option value='2' ".$selectedordenacio2.">".elgg_echo('kpax:game:category')."</option>";
+							$content.="<option value='3' ".$selectedordenacio3.">".elgg_echo('kpax:game:platform')."</option>";
+							$content.="<option value='4' ".$selectedordenacio4.">".elgg_echo('kpax:game:skill')."</option>";
 						$content.="</select>";
 					$content.="</p>";
 
 				$content.="</div>";
 			$content.="<div class='clearer'></div>";
 			$content.="<div class='aligncenter'>";
-				$content.="<input id='search_button' name='search_button' type='submit' value='".elgg_echo('kpax:search')."' />";
+				$content.="<input id='search_button' name='search_button' type='submit' value='".elgg_echo('kpax:game:search')."' />";
 			$content.="</div>";
 			$content.="</form>";
 			
@@ -194,6 +194,31 @@ else if("5" == $sort)
 	else {
 		$offset = 0;
 	}
+	
+	//If variables do not have value, assign default value
+	if ($name=="") {
+		$name = " ";
+	}
+	if ($category=="") {
+		$category = "0";
+	}
+	if ($platform=="") {
+		$platform = "0";
+	}
+	if ($ski=="0"){
+		$ski = "0";
+	}
+	if ($tag==""){
+		$tag = " ";
+	}
+	if ($keyMeta=="0"){
+		$keyMeta = "0";
+	}
+	if ($valueMeta==""){
+		$valueMeta = " ";
+	}
+	//$sort is not necessary (default value assigned = 1)
+	
 	$gameList = $objKpax->getListGamesSearch($name, $category, $platform, $ski, $tag, $keyMeta, $valueMeta, $sort, $offset, $limit, $_SESSION["campusSession"]);
 	
 	
@@ -213,7 +238,7 @@ if ($gameList->offset > 0){
 	$content .= "<input type='hidden' name='valuemeta' value='".$valueMeta."'/>";
 	$content .= "<input type='hidden' name='sort' value='".$sort."'/>";
 	$content .= "<input type='hidden' name='offset' value='".($offset-$limit)."'/>";
-	$content .= "<input type='submit' value='".elgg_echo('kpax:previous')."' />";
+	$content .= "<input type='submit' value='".elgg_echo('kpax:game:previous')."' />";
 	$content .= "</fieldset>";
 	$content .= "</form>";
 	$content .= "</div>";
@@ -232,7 +257,7 @@ if ($gameList->offset + $gameList->limit < $gameList->total->integer){
 	$content .= "<input type='hidden' name='valuemeta' value='".$valueMeta."'/>";
 	$content .= "<input type='hidden' name='sort' value='".$sort."'/>";
 	$content .= "<input type='hidden' name='offset' value='".($offset+$limit)."'/>";
-	$content .= "<input type='submit' value='".elgg_echo('kpax:next')."' />";
+	$content .= "<input type='submit' value='".elgg_echo('kpax:game:next')."' />";
 	$content .= "</fieldset>";
 	$content .= "</form>";
 	$content .= "</div>";
@@ -294,7 +319,7 @@ if(isset($gameList->games) && sizeof($gameList->games) > 0) {
 	$content .= elgg_view('kpax/games_list', array('objGameList' => $gameList->games, 'categories' => $categories, 'platforms' => $platforms, 'skills' => $skills));
 }
 else {
-    $content .= '<div><p>' . elgg_echo('kpax:none') . '</p></div>';
+    $content .= '<div><p>' . elgg_echo('kpax:nogames') . '</p></div>';
 }
 
 $content.="</div>"; //contenido

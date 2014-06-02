@@ -75,7 +75,8 @@ if($vars['categories'] /*&& $vars['platforms'] && $vars['skills']*/)
 	}
 	else
 	{ 
-		elgg_echo('kPAX:noGames');
+		elgg_echo('kpax:nogames');
 	}
+
 }
 ?> 

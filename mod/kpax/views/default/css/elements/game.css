@@ -16,7 +16,7 @@
 			.ficha_juego  .juego_foto_wrapper .juego_foto{
 				width: 140px;
 				height: 100%;
-				background-color: #8d8d8d;		
+				background-color: #8d8d8d;
 			}
 		
 		.ficha_juego  .juego_texto{
@@ -39,7 +39,51 @@
 		float: left;
 		text-align: center;
 	}
+		.ficha_juego .contenedor_juegos{
+			width: 100%;
+			text-align:center;
+			background-color: #eeeeee;
+		}
+		
+			/*Cuadro de un juego*/
+			.ficha_juego .contenedor_juegos .cuadro_juego{
+				position: relative; /*Para que el hijo pueda hacer un position absolute respecto al padre*/
+				height: 160px;
+				width: 330px;
+				display:inline-block;
+				margin: 2px;
+				background-color: #ffffff;
+			}
+			
+				/*Enlace para todo un div*/
+				.ficha_juego .contenedor_juegos .juego_link{
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					right: 0;
+					top: 0;
+				}
+				
+				/*Cuadro de la foto de un juego*/
+				.ficha_juego .contenedor_juegos .juego_foto{
+					position: relative; /*Para que el hijo pueda hacer un position absolute respecto al padre*/
+					width: 140px;
+					height: 100%;
+					float: left;
+					background-color: #8d8d8d;
+				}
 
+				/*Cuadro del texto de un juego*/
+				.ficha_juego .contenedor_juegos .juego_texto{
+					position: relative; /*Para que el hijo pueda hacer un position absolute respecto al padre*/
+					width: 170px;
+					padding-left: 10px;
+					padding-right: 10px;
+					padding-top: 7px;
+					float: left;
+					background-color: #ffffff;
+				}		
+		
 .ficha_juego .ficha_juego_derecha{
 	width: 30%;
 	float: left;	
@@ -56,11 +100,19 @@
 }
 
 .ficha_juego .juego_texto h2{
+	position: relative; /*Para que el hijo pueda hacer un position absolute respecto al padre*/
+	overflow: hidden; /*Para lo que pase del final de la línea, que no se vea*/
 	font-size: 20px;
+	white-space: nowrap; /*Para que no haya salto de línea si el título es largo*/
 }
 
 .ficha_juego  a{
 	color: #333;
+}
+
+.ficha_juego .juego_texto p{
+	font-size: 13px;
+	color: #8d8d8d;
 }
 
 .ficha_juego{
@@ -68,24 +120,15 @@
 	color: #8d8d8d;
 }
 
-/*Clearer*/
-.clearer { clear: both; }
-
-
-.ficha_juego1 .texto_descripcion{
+.ficha_juego .texto_descripcion{
 	position: relative; /*Para que el hijo pueda hacer un position absolute respecto al padre*/
 	min-height: 20px;
 	max-height: 54px;
 	overflow: hidden;
 }
 
-/*A PARTIR DE AQUÍ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-/*A PARTIR DE AQUÍ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-/*A PARTIR DE AQUÍ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-/*A PARTIR DE AQUÍ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-
 /*Elemento de degradado para el final de un párrafo*/
-.ficha_juego1 .final_parrafo{
+.ficha_juego .final_parrafo{
 	position: absolute;
 	max-height: 100%;
 	width: 60px;
@@ -101,12 +144,12 @@
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='#00ffffff',EndColorStr='#ffffff');
 }
 
-.ficha_juego1 .final_parrafo_titulo{
+.ficha_juego .final_parrafo_titulo{
 	height: 25px;
 }
 
 /*Transición de imagen*/
-.ficha_juego1 .transicion{
+.ficha_juego .transicion{
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -122,44 +165,32 @@
 	background: rgba(0,0,0,0.4);
 }
 
-.ficha_juego1 .transicion:hover{
+.ficha_juego .transicion:hover{
 	-moz-opacity: 1;
 	opacity: 1;
 	filter: alpha(opacity=100);
 }
 
+/*Clearer*/
+.clearer { clear: both; }
+
 /*Responsive*/
 @media screen and (max-width:700px) {
-	.ficha_juego1 .menu_vertical{
+	.ficha_juego .ficha_juego_izquierda{
 		width: 100%;
 		float: none;
 	}
-
-	.ficha_juego1 .contenido{
-		width: 100%;
-		float: none;
-	}
-
-		.ficha_juego1 .menu_horizontal_busqueda{
+					
+		.ficha_juego .doscol{
 			width: 100%;
 			float: none;
 		}
 
-			.ficha_juego1 .menu_horizontal_izquierda{
-				width: 100%;
-				float: none;
-			}
-
-			.ficha_juego1 .menu_horizontal_derecha{
-				width: 100%;
-				float: none
-			}
-
-		.ficha_juego1 .menu_horizontal_orden{
-			width: 100%;		
-			float: none;
-
-		}
+			
+	.ficha_juego .ficha_juego_derecha{
+		width: 100%;
+		float: none;
+	}
 
 	.elgg-page-default .elgg-page-body > .elgg-inner {
 		padding: 0;

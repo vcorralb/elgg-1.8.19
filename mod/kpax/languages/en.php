@@ -37,7 +37,34 @@ $english = array(
     'kPAX:noGames' => "You do not have games in kPAX yet.",
     'kPAX:my_dev_games' => "My (developed) games",
     'kpax:tagline' => 'Play seriously!',
-    'kpax:dragdrop' => 'You can drag and drop an image from the desktop'
+    'kpax:dragdrop' => 'You can drag and drop an image from the desktop',
+	
+	/*PFM vcorralb*/
+	'kpax:games' => 'Games',
+	'kpax:game:category' => 'Category',
+	'kpax:game:allcategories' => 'All',
+	'kpax:game:name' => 'Name',
+	'kpax:game:tag' => 'Tag',
+	'kpax:game:metadata' => 'Metadata',
+	'kpax:game:allmetadata' => 'All',
+	'kpax:game:platform' => 'Platform',
+	'kpax:game:allplatforms' => 'All',
+	'kpax:game:skill' => 'Skill',
+	'kpax:game:allskills' => 'All',
+	'kpax:game:sort' => 'Sort',
+	'kpax:game:search' => 'Search',
+	'kpax:game:previous' => 'Previous',
+	'kpax:game:next' => 'Next',
+	'kpax:list:success' => 'Success list',
+	'kpax:list:failed' => 'Error list',
+	'kpax:game:description' => 'Description',
+	'kpax:play' => 'Play',
+	'kpax:similarGames' => 'Similar games',
+	'kpax:comments' => 'Comments',
+	'kpax:gamestatisticssocialnetworks' => 'Game statistics and social networks',
+	'kpax:listgames' => 'Game&apos;s list',
+	'kpax:nogames' => 'No hi ha jocs d&apos;acord amb aquests criteris de filtratge',
+	'kpax:all' => 'Games'
 );
 
 add_translation('en', $english); 

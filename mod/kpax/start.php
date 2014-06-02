@@ -39,7 +39,7 @@ function kpax_init() {
 
     elgg_register_menu_item('site', array(
         'name' => 'all',
-        'text' => elgg_echo('kPAX:all'),
+        'text' => elgg_echo('kpax:all'),
         'href' => 'kpax/all'
     ));
 
@@ -49,6 +49,11 @@ function kpax_init() {
         'href' => 'kpax/devs'
     ));
 
+	// translations
+	register_translations($root."/languages",true);
+	reload_all_translations();
+
+	
     // WS AUTH USER
     /* La funcion mi_eco($string) es la funcion que publicaremos */
     function auth_user($username="", $password = "") {
