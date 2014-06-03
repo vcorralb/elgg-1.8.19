@@ -54,9 +54,11 @@
 	/*Contenedor juegos*/
 	.listado_juegos .contenedor_juegos{
 		width: 100%;
+		padding-top: 10px;
+		padding-bottom: 10px;
 		text-align:center;
 		background-color: #eeeeee;
-		
+		box-shadow: 3px 3px 2px #bbb;	
 	}
 
 		/*Cuadro de un juego*/
@@ -202,7 +204,9 @@
 }
 
 .listado_juegos #search_button{
-	width: 50%;
+	width: 100px;
+	background-color: #006AB6;
+	color: #ffffff;
 }
 
 /*Clearer*/
@@ -218,6 +222,7 @@
 	.listado_juegos .menu_vertical{
 		width: 100%;
 		float: none;
+		padding-bottom: 15px;
 	}
 
 	.listado_juegos .contenido{
@@ -243,7 +248,7 @@
 		.listado_juegos .menu_horizontal_orden{
 			width: 100%;		
 			float: none;
-
+			padding-bottom: 15px;
 		}
 
 	.elgg-page-default .elgg-page-body > .elgg-inner {

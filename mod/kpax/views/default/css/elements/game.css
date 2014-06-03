@@ -5,7 +5,6 @@
 
 	.ficha_juego .juego{
 		width: 100%;
-		background-color: #eeeeee;
 	}
 	
 		.ficha_juego .juego_foto_wrapper{
@@ -16,7 +15,6 @@
 			.ficha_juego  .juego_foto_wrapper .juego_foto{
 				width: 140px;
 				height: 100%;
-				background-color: #8d8d8d;
 			}
 		
 		.ficha_juego  .juego_texto{
@@ -41,8 +39,11 @@
 	}
 		.ficha_juego .contenedor_juegos{
 			width: 100%;
+			padding-top: 10px;
+			padding-bottom: 10px;
 			text-align:center;
 			background-color: #eeeeee;
+			box-shadow: 3px 3px 2px #bbb;	
 		}
 		
 			/*Cuadro de un juego*/
@@ -171,15 +172,49 @@
 	filter: alpha(opacity=100);
 }
 
+.ficha_juego #play_button{
+	width: 140px;
+	background-color: #006AB6;
+	color: #ffffff;
+}
+
 /*Clearer*/
 .clearer { clear: both; }
 
 /*Responsive*/
-@media screen and (max-width:700px) {
+@media screen and (max-width:1070px) {
 	.ficha_juego .ficha_juego_izquierda{
 		width: 100%;
 		float: none;
 	}
+
+	.ficha_juego .ficha_juego_derecha{
+		width: 100%;
+		float: none;
+	}
+}
+
+@media screen and (max-width:775px) {
+	.ficha_juego .ficha_juego_izquierda{
+		width: 100%;
+		float: none;
+	}
+		.ficha_juego .juego_foto_wrapper{
+			width: 100%;
+			float: none;
+			margin-left: 30%;
+		}
+	
+		.ficha_juego .juego_texto{
+			width: 100%;
+			float: none;
+			padding-top: 15px;
+			padding-bottom: 15px;
+		}
+		
+		.ficha_juego #play_button{
+			margin-left: 30%;
+		}
 					
 		.ficha_juego .doscol{
 			width: 100%;

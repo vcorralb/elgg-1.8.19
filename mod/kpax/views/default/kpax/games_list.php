@@ -1,38 +1,24 @@
 	<?php
 echo "<h2>".elgg_echo('kpax:listgames')."</h2>";
-if($vars['categories'] /*&& $vars['platforms'] && $vars['skills']*/)
+if($vars['categories'])
 {
+	//Capture category names
 	$cats = array();
-	/*$plats = array();
-	$skillss = array();*/
 
 	foreach($vars['categories'] as $cat)
 	{
 		$cats[$cat->idCategory] = $cat->name;
 	}
-	/*foreach($vars['platforms'] as $plat)
-	{
-		$plats[$plat->idPlatform] = $plat->name;
-	}
-	foreach($vars['skills'] as $skill)
-	{
-		$skillss[$skill->idSkill] = $skill->name;
-	}*/
 
+	//If there are games
 	if ($vars['objGameList']) {	
 		
 		echo "<div class='contenedor_juegos'>";
-		
+
 			foreach ($vars['objGameList'] as $game) {
 				$catview = "";
-				/*$platview = "";
-				$skillview = "";*/
 				if($game->idCategory != 0)
 					$catview = $cats[$game->idCategory];
-				/*if($game->idPlatform != 0)
-					$platview = $plats[$game->idPlatform];
-				if($game->idSkill != 0)
-					$skillview = $skillss[$game->idSkill];*/
 				$tagsview ="";
 				foreach($game->tags as $tag){
 					if ($tag != null){
@@ -73,6 +59,7 @@ if($vars['categories'] /*&& $vars['platforms'] && $vars['skills']*/)
 			}
 		echo "</div>";
 	}
+	//If there isn't any games
 	else
 	{ 
 		elgg_echo('kpax:nogames');

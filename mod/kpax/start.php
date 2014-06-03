@@ -95,10 +95,8 @@ function kpax_init() {
 
 function kpax_page_handler($page) {
 
-
-    elgg_push_breadcrumb(elgg_echo('kPAX:play'), 'kpax/play');
     elgg_push_breadcrumb(elgg_echo('kPAX:devs'), 'kpax/devs');
-    elgg_push_breadcrumb(elgg_echo('Games'), 'kpax/all');
+    elgg_push_breadcrumb(elgg_echo('kpax:games'), 'kpax/all');
 
 
     // old group usernames

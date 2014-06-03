@@ -1,19 +1,8 @@
 <?php
 
-/**
- * View a bookmark
- *
- * @package ElggBookmarks
- */
-//$kpax = get_entity(get_input('guid'));
-
-
-//IMPORTANT: AIXÒ NO FUNCIONA!
-//$page_owner = elgg_get_page_owner_entity();
-
 $objKpax = new kpaxSrv(elgg_get_logged_in_user_entity()->username);
 
-//New process to extract id's game
+//Process to extract id's game
 $urlVector = explode("/",$_SERVER['REQUEST_URI']);
 $idGame = $urlVector[count($urlVector)-1];
 
@@ -25,15 +14,10 @@ $categories = $objKpax->getCategories($_SESSION["campusSession"]);
 $platforms = $objKpax->getPlatforms($_SESSION["campusSession"]);
 $skills = $objKpax->getSkills($_SESSION["campusSession"]);
 
-/* Get tags*/
-//$tags = $objKpax->getTagsGame($_SESSION["campusSession"],$idGame);
-
-/* Get metadata */
-//$metadatas = $objKpax->getMetaDatasGame($_SESSION["campusSession"],$idGame);
-
 /* Get similar games */
 $similarGameList = $objKpax->getListSimilarGames($idGame, $_SESSION["campusSession"]);
 
+//Capture category, platform and skill names
 $cats = array();
 $plats = array();
 $skillss = array();
@@ -51,6 +35,7 @@ foreach($skills as $skill)
 	$skillss[$skill->idSkill] = $skill->name;
 }
 
+//Render categories, platforms, skills, tags and metadatas
 $catview = "";
 $platview = "";
 $skillview = "";
@@ -67,7 +52,6 @@ foreach($game->tags as $tag){
 		$tagsview .= $tag->tag." ";
 	}
 }
-
 foreach($game->metadatas as $metadata){
 	if ($metadata != null){
 		$metadatasview .= "<li>".$metadata->keyMeta.": ";
@@ -76,14 +60,8 @@ foreach($game->metadatas as $metadata){
 }
 $metadatasview .= "</ul>";
 
-
-//$title = $kpax->title;
-//$title = $game->name;
-
-//Breadcrumb
+//Add breadcrumb game
 elgg_push_breadcrumb($game->name);
-
-//$content = elgg_view_entity($kpax, array('full_view' => true));
 
 $content.= "<div class='ficha_juego'>";
 	$content.= "<div class='ficha_juego_izquierda'>";
@@ -125,7 +103,7 @@ $content.= "<div class='ficha_juego'>";
 						$similargametagsview .= $tag->tag." ";
 					}
 				}
-	
+				
 				$content.= "<div class='cuadro_juego'>";
 					$content.= "<a class= 'juego_link' href='".$similarGame->idGame."'></a>";
 					$content.= "<div class='juego_foto'>";
@@ -169,8 +147,6 @@ $content.= "<div class='ficha_juego'>";
 $content.= "</div>";
 
 $content.="<div class='clearer'></div>";
-
-//$content .= elgg_view_comments($kpax);
 
 $body = elgg_view_layout('one_column', array(
     'content' => $content,
